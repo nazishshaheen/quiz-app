@@ -1,45 +1,54 @@
 import questionArray from "./questions.js";
-import { addAnswers } from "./questionbody.js";
+import { addQAnswers, nextQuestion } from "./questionbody.js";
+import { showElement } from "./functions.js";
 
 let questionElement = document.getElementById('question');
 let answerBtn = document.getElementById('answer-button-container');
 let nextBtn = document.getElementById('next-btn');
-let skipBtn = document.getElementById('skip-btn');
 
-let marks = 0;
 let questionIndex = 0;
+
+function incrementQuestionIndex(){
+    return questionIndex++;
+}
 
 function startQuiz() {
     questionIndex = 0;
-    marks = 0;
     showQuestion();
 }
 
 
 function showQuestion() {
     let currentQuestion = questionArray[questionIndex];
-    let questionNo = questionIndex + 1;
-    questionElement.innerHTML = questionNo + ". "+currentQuestion.question;
-    addAnswers(currentQuestion);
-    
+    addQAnswers(currentQuestion, questionIndex);
 }
 
-function selectAnswer(e) {
-    let selectedBtn = e.target;
-    let isCorrect = selectedBtn.dataset.correct === 'true';
-    if(isCorrect){
-        selectedBtn.classList.add('correct');
-    }else{
-        selectedBtn.classList.add('incorrect');
-    }
-    nextBtn.style.display = 'block';
+
+
+function showAnswer(buttonContainer) {
+    buttonContainer.childNodes.forEach((button) => {
+        if (button.dataset.correct === "true") {
+            button.classList.add('correct');
+        } else {
+            button.classList.add('incorrect');
+        }
+    })
+    showElement(nextBtn);
 
 }
+function nextQuestionEvent() {
+    nextQuestion(incrementQuestionIndex());
+}
+nextBtn.addEventListener('click', nextQuestionEvent)
 
 startQuiz();
 
-export{
+export {
     questionElement,
     answerBtn,
-    nextBtn
+    nextBtn,
+    questionIndex,
+    incrementQuestionIndex,
+    showAnswer,
+    nextQuestionEvent
 }
