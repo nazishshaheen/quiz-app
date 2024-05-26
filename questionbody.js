@@ -1,5 +1,5 @@
-import questionArray from "./questions";
-import { questionElement, answerBtn, nextBtn } from "./quizapp";
+import questionArray from "./questions.js";
+import { questionElement, answerBtn, nextBtn } from "./quizapp.js";
 
 function nextQuestion(prevQuestion) {
     if (prevQuestion + 1 < questionArray.length) {

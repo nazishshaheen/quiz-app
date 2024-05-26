@@ -1,5 +1,5 @@
-import questionArray from "./questions";
-import { addAnswers } from "./questionbody";
+import questionArray from "./questions.js";
+import { addAnswers } from "./questionbody.js";
 
 let questionElement = document.getElementById('question');
 let answerBtn = document.getElementById('answer-button-container');
