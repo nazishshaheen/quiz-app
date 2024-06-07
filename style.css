@@ -67,6 +67,11 @@ body {
     margin: 20px auto 0;
     border-radius: 4px;
     cursor: pointer;
+    
+}
+.skip-next-btn:hover{
+    box-shadow: 0px 0px 5px black;
+    font-size: 20px;
 }
 #next-btn{
     display: none;
